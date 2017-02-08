@@ -1,0 +1,32 @@
+﻿@model List<ET.Usuario>
+@{
+    ViewBag.Title = "Lista Usuarios";
+}
+
+<h2>Usuarios</h2>
+
+<a href="~/home/editar">Nuevo Registro </a>
+
+<table class="table table-striped" >
+    <thead>
+    <tr>
+        <td>Nombre </td>
+        <td>Apellido </td>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Apellido</td>
+                <td style="200px">
+                    <a href="~/Home/editar/@usuario.Id">Editar</a>
+                    <a href="~/Home/eliminar/@usuario.Id" onclick="return confirm('Esta seguro de eliminar el registro?');" >Eliminar</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

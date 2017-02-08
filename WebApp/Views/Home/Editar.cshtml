@@ -1,0 +1,33 @@
+﻿@model ET.Usuario
+
+@{
+    ViewBag.Title = "Editar";
+
+    List<ET.Rol> roles = ViewBag.Roles;
+}
+<h2>@(Model.Id == 0 ? "Nuevo Usuario" : Model.Nombre + " " + Model.Apellido )</h2>
+
+@using (Html.BeginForm("guardar", "Home", FormMethod.Post))
+{
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(x => x.Id)
+        <label class="control-label">Nombre:</label>
+        @Html.TextBoxFor(x => x.Nombre)
+        <br/>
+        <label class="control-label">Apellido</label>
+        @Html.TextBoxFor(x => x.Apellido)
+        <br/>
+        <label class="control-label">Rol:</label>
+
+        <select id="role" name="Rol_id">
+            @foreach (var r in roles)
+            {
+                <option @(r.Id == Model.Rol_Id ? "selected" : "") value="@(r.Id)">@r.Nombre</option>
+            }
+        </select>
+
+    </div>
+    <button class="btn btn-success">Enviar</button>
+}
+
